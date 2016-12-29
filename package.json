@@ -2,6 +2,9 @@
   "name": "pluralsight-redux-starter",
   "version": "1.0.0",
   "description": "Starter kit for React and Redux Pluralsight course by Ali Bhagat",
+  "scripts":{
+    "start": "babel-node tools/srcServer.js"
+  },
   "author": "Ali Bhagat",
   "license": "MIT",
   "dependencies": {
