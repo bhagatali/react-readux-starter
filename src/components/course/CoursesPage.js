@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
 
 class CoursesPage extends React.Component {
@@ -32,7 +33,7 @@ class CoursesPage extends React.Component {
   }
 
   onClickSave(){
-    this.props.createCourse(this.state.course);
+    this.props.actions.createCourse(this.state.course);
   }
 
   courseRow(course,index){
@@ -59,8 +60,8 @@ class CoursesPage extends React.Component {
 }
 
 // CoursesPage.propTypes = {
-//   createCourse: PropTypes.func.isRequired,
-//   courseProp: PropTypes.arr.isRequired
+//   courseProp: PropTypes.arr.isRequired,
+//   actions: PropTypes.object.isRequired
 // };
 
 function mapStateToProps(state, ownProps){
@@ -75,7 +76,10 @@ function mapDispatchToProps(dispatch){
     // not wrapped in the dispatch call, the redux flow will never execute.
     //Instead the createCourse would return the object that is defined in the
     // courseActions.js file.
-    createCourse: course => dispatch(courseActions.createCourse(course))
+
+    //createCourse: course => dispatch(courseActions.createCourse(course))
+
+    actions: bindActionCreators(courseActions,dispatch)
   };
 }
 
