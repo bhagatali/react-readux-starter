@@ -15,6 +15,10 @@ class CoursesPage extends React.Component {
     //of undefined ". This is because the this.state.course in the onTitleChange
     //is not bound to the this of the component. It is only bound to the this
     //of the caller which is onChange event in the input tag.
+
+    //The bind can be done in the render function as well but it is
+    //recommended to do the bind in the constructor because doing a
+    //bind in the render leads to performance issues.
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onClickSave = this.onClickSave.bind(this);
   }
