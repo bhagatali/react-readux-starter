@@ -32,7 +32,7 @@ class CoursesPage extends React.Component {
   }
 
   onClickSave(){
-    this.props.dispatch(courseActions.createCourse(this.state.course));
+    this.props.createCourse(this.state.course);
   }
 
   courseRow(course,index){
@@ -58,14 +58,24 @@ class CoursesPage extends React.Component {
   }
 }
 
-CoursesPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  courseProp: PropTypes.arr.isRequired
-};
+// CoursesPage.propTypes = {
+//   createCourse: PropTypes.func.isRequired,
+//   courseProp: PropTypes.arr.isRequired
+// };
 
 function mapStateToProps(state, ownProps){
   return {
     courseProp: state.courseReducer
+  };
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    //dispatch() sets up the flow through redux. If the createCourse() call was
+    // not wrapped in the dispatch call, the redux flow will never execute.
+    //Instead the createCourse would return the object that is defined in the
+    // courseActions.js file.
+    createCourse: course => dispatch(courseActions.createCourse(course))
   };
 }
 
@@ -75,4 +85,4 @@ function mapStateToProps(state, ownProps){
 // const connectedStateAndProps = connect(mapStateToProps,mapDispatchToProps);
 // export defaule connectedStateAndProps(CoursesPage);
 
-export default connect(mapStateToProps)(CoursesPage);
+export default connect(mapStateToProps,mapDispatchToProps)(CoursesPage);
