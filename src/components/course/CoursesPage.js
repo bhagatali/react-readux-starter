@@ -7,9 +7,9 @@ class CoursesPage extends React.Component {
   constructor(props,context){
     super(props,context);
 
-    this.state = {
-      course: {title : ""}
-    };
+    // this.state = {
+    //   course: {title : ""}
+    // };
 
     //Beacuse ES6 does not auto bind, we need to bind the this
     //of onTitleChange and onClickSave to the this of the component.
@@ -22,19 +22,20 @@ class CoursesPage extends React.Component {
     //The bind can be done in the render function as well but it is
     //recommended to do the bind in the constructor because doing a
     //bind in the render leads to performance issues.
-    this.onTitleChange = this.onTitleChange.bind(this);
-    this.onClickSave = this.onClickSave.bind(this);
+
+    // this.onTitleChange = this.onTitleChange.bind(this);
+    // this.onClickSave = this.onClickSave.bind(this);
   }
 
-  onTitleChange(event){
-    const course = this.state.course;
-    course.title = event.target.value;
-    this.setState({course: course});
-  }
-
-  onClickSave(){
-    this.props.actions.createCourse(this.state.course);
-  }
+  // onTitleChange(event){
+  //   const course = this.state.course;
+  //   course.title = event.target.value;
+  //   this.setState({course: course});
+  // }
+  //
+  // onClickSave(){
+  //   this.props.actions.createCourse(this.state.course);
+  // }
 
   courseRow(course,index){
     return <div key={index}>{course.title}</div>;
@@ -45,15 +46,6 @@ class CoursesPage extends React.Component {
       <div>
         <h1>Courses</h1>
         {this.props.courseProp.map(this.courseRow)}
-        <h2>Add Course</h2>
-        <input
-          type="text"
-          onChange={this.onTitleChange}
-          value={this.state.course.title} />
-        <input
-          type="submit"
-          value="Save"
-          onClick={this.onClickSave} />
       </div>
     );
   }
