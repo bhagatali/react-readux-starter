@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
+import CourseList from './CourseList';
 
 class CoursesPage extends React.Component {
   constructor(props,context){
@@ -42,10 +43,14 @@ class CoursesPage extends React.Component {
   }
 
   render(){
+    //Destructuring to keep things clean.
+    const {courseProp} = this.props;
+
+    //  {this.props.courseProp.map(this.courseRow)}
     return(
       <div>
         <h1>Courses</h1>
-        {this.props.courseProp.map(this.courseRow)}
+        <CourseList courses={courseProp}/>
       </div>
     );
   }
